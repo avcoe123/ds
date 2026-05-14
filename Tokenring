@@ -1,0 +1,47 @@
+#3 Tokenring
+class TokenRing:
+
+    def __init__(self, num_nodes):
+        self.num_nodes = num_nodes
+        self.nodes = [None] * num_nodes
+
+    def set_node(self, node_id, data):
+        self.nodes[node_id] = data
+
+    def run(self):
+
+        current_node = 0
+        token = "TOKEN"
+
+        while True:
+
+            # Check if token exists
+            if token:
+
+                print(f"Node {current_node}: Received token")
+
+                # Process node data
+                print(f"Node {current_node}: Processing data '{self.nodes[current_node]}'")
+
+                # Pass token to next node
+                next_node = (current_node + 1) % self.num_nodes
+
+                # If token completes one full rotation
+                if next_node == 0:
+                    print("Token completed one full rotation")
+                    break
+
+                current_node = next_node
+
+
+# Create TokenRing with 4 nodes
+token_ring = TokenRing(4)
+
+# Set data for each node
+token_ring.set_node(0, "Data 1")
+token_ring.set_node(1, "Data 2")
+token_ring.set_node(2, "Data 3")
+token_ring.set_node(3, "Data 4")
+
+# Run token ring algorithm
+token_ring.run()
